@@ -1,53 +1,59 @@
 
-print("================================")
-print("        MY CHATBOT")
-print("================================")
+# STEP 4 - CHATBOT WITH CONVERSATION MEMORY
 
-# Store chatbot responses in a dictionary
+name = "Greeshma"
+
+# Store conversation messages
+chat_history = []
+
+# Chatbot responses
 responses = {
-    "how are you": "I am doing great! Thanks for asking.",
-    "your name": "I am your personal chatbot.",
-    "what can you do": "I can chat with you and answer basic questions.",
-    "i am doing great": "That's wonderful! What are you working on?",
-    "what is python": "Python is a popular programming language."
+    "hello": "Hello! How can I help you?",
+    "hi": "Hi! Nice to meet you.",
+    "how are you": "I am doing great!",
+    "what is python": "Python is a programming language.",
+    "who are you": "I am your personal chatbot."
 }
-# Function to generate chatbot responses
-def get_response(message, name):
-
-    message = message.lower().strip()
-    words = message.split()
-
-    if "bye" in words:
-        return "Goodbye " + name + "! Have a nice day."
-
-    elif "hello" in words or "hi" in words:
-        return "Hello! How are you?"
-
-    else:
-        # Search for a matching question in dictionary
-        for question in responses:
-
-            if question in message:
-                return responses[question]
-
-        return "Sorry, I don't understand that yet."
 
 
-# Main program
-name = input("What is your name? ")
+# Function to generate responses
+def get_response(message):
 
-print("Hello", name)
-print("Start chatting with me!")
+    message = message.lower()
+
+    if message == "history":
+        if len(chat_history) == 0:
+            return "No conversation history yet."
+
+        return "\n".join(chat_history)
+
+    for question in responses:
+        if question in message:
+            return responses[question]
+
+    return "Sorry, I don't understand that."
+
+
+# Main chatbot program
+print("Welcome", name, "!")
+print("Type 'history' to see previous messages.")
 print("Type 'bye' to exit.")
 
 while True:
 
-    user_message = input("You: ")
+    user_message = input("\nYou: ")
 
-    # Call the response function
-    reply = get_response(user_message, name)
-
-    print("Bot:", reply)
-
-    if "bye" in user_message.lower().split():
+    if user_message.lower() == "bye":
+        print("Chatbot: Goodbye!")
         break
+
+    # Store user message
+    chat_history.append("You: " + user_message)
+
+    # Generate chatbot response
+    reply = get_response(user_message)
+
+    # Store chatbot response
+    chat_history.append("Chatbot: " + reply)
+
+    print("Chatbot:", reply)
