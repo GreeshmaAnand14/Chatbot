@@ -1,10 +1,18 @@
 
-# STEP 4 - CHATBOT WITH CONVERSATION MEMORY
+# STEP 5 - CHATBOT WITH PERMANENT MEMORY
 
 name = "Greeshma"
 
-# Store conversation messages
-chat_history = []
+FILE_NAME = "chat_history.txt"
+
+# Load previous conversations
+try:
+    with open(FILE_NAME, "r", encoding="utf-8") as file:
+        chat_history = file.readlines()
+
+except FileNotFoundError:
+    chat_history = []
+
 
 # Chatbot responses
 responses = {
@@ -16,16 +24,17 @@ responses = {
 }
 
 
+# Function to save messages
+def save_message(message):
+
+    with open(FILE_NAME, "a", encoding="utf-8") as file:
+        file.write(message + "\n")
+
+
 # Function to generate responses
 def get_response(message):
 
     message = message.lower()
-
-    if message == "history":
-        if len(chat_history) == 0:
-            return "No conversation history yet."
-
-        return "\n".join(chat_history)
 
     for question in responses:
         if question in message:
@@ -36,7 +45,8 @@ def get_response(message):
 
 # Main chatbot program
 print("Welcome", name, "!")
-print("Type 'history' to see previous messages.")
+print("I can remember our previous conversations.")
+print("Type 'history' to see your chat history.")
 print("Type 'bye' to exit.")
 
 while True:
@@ -47,13 +57,27 @@ while True:
         print("Chatbot: Goodbye!")
         break
 
-    # Store user message
-    chat_history.append("You: " + user_message)
+    # Display previous conversations
+    if user_message.lower() == "history":
+
+        if len(chat_history) == 0:
+            print("Chatbot: No previous conversations found.")
+
+        else:
+            print("\n--- CHAT HISTORY ---")
+            print("".join(chat_history))
+
+        continue
 
     # Generate chatbot response
     reply = get_response(user_message)
 
-    # Store chatbot response
-    chat_history.append("Chatbot: " + reply)
+    # Store messages in memory
+    chat_history.append("You: " + user_message + "\n")
+    chat_history.append("Chatbot: " + reply + "\n")
+
+    # Save messages permanently
+    save_message("You: " + user_message)
+    save_message("Chatbot: " + reply)
 
     print("Chatbot:", reply)
