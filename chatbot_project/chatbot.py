@@ -1,11 +1,14 @@
 
-# STEP 6 - CHATBOT THAT REMEMBERS YOUR NAME
+# STEP 7 - CHATBOT WITH DATE, TIME AND GREETINGS
+
+import datetime
+from zoneinfo import ZoneInfo
 
 FILE_NAME = "chat_history.txt"
 USER_FILE = "user_data.txt"
 
 
-# Load or save user's name
+# Load user's name
 try:
     with open(USER_FILE, "r", encoding="utf-8") as file:
         name = file.read().strip()
@@ -14,7 +17,7 @@ except FileNotFoundError:
     name = ""
 
 
-# Ask for name if it is not saved
+# Ask for name if not available
 if not name:
     print("Chatbot: Hello! What is your name?")
     name = input("You: ").strip()
@@ -45,8 +48,80 @@ responses = {
 }
 
 
-# Function to generate responses
-def get_response(message, name):
+# Function for date, time and greetings
+def get_time_response(message):
+    now = datetime.datetime.now(ZoneInfo("Asia/Kolkata"))
+
+    if "date" in message or "today" in message:
+        return "Today's date is " + now.strftime("%d %B %Y") + "."
+
+    elif "day" in message:
+      "Today is " + now.strftime("%A") + "."
+    
+    elif "time" in message:
+        return "The current time is " + now.strftime("%I:%M %p") + "."
+
+    elif "good morning" in message or "good afternoon" in message or "good evening" in message:
+
+        hour = now.hour
+
+        if hour < 12:
+            return "Good morning, " + name + "!"
+
+        elif hour < 17:
+            return "Good afternoon, " + name + "!"
+
+        else:
+            return "Good evening, " + name + "!"
+
+    return None
+
+# Function to perform calculations
+def calculate(message):
+
+    parts = message.split()
+
+    if parts[0] != "calculate":
+        return None
+
+    try:
+        num1 = float(parts[1])
+        operator = parts[2]
+        num2 = float(parts[3])
+
+        if len(parts) != 4:
+            return "Please enter two numbers and one operator."
+
+        if operator == "+":
+            result = num1 + num2
+
+        elif operator == "-":
+            result = num1 - num2
+
+        elif operator == "*":
+            result = num1 * num2
+
+        elif operator == "/":
+            if num2 == 0:
+                return "Cannot divide by zero."
+
+            result = num1 / num2
+
+        else:
+            return "Invalid mathematical operator."
+
+        # Display whole numbers without decimal points
+        if result.is_integer():
+            result = int(result)
+
+        return "The answer is " + str(result) + "."
+
+    except (ValueError, IndexError):
+        return "Please enter a valid calculation."
+
+
+# Function to generate chatbot response
+def get_response(message):
 
     message = message.lower()
 
@@ -56,32 +131,55 @@ def get_response(message, name):
     if "who am i" in message:
         return "You are " + name + "."
 
+    # Check date, time and greetings
+    time_response = get_time_response(message)
+
+    if time_response is not None:
+        return time_response
+    math_response = calculate(message)
+
+    if math_response is not None:
+        return math_response
+    # Check normal responses
     for question in responses:
+
         if question in message:
             return responses[question]
 
     return "Sorry, I don't understand that."
 
 
-# Function to save conversation
+# Function to save conversations
 def save_message(message):
 
     with open(FILE_NAME, "a", encoding="utf-8") as file:
         file.write(message + "\n")
 
 
-# Main chatbot program
-print("\nWelcome back,", name + "!")
-print("I remember your name.")
+# Display greeting based on current time
+hour = datetime.datetime.now(ZoneInfo("Asia/Kolkata")).hour
+
+if hour < 12:
+    greeting = "Good morning"
+elif hour < 17:
+    greeting = "Good afternoon"
+else:
+    greeting = "Good evening"
+
+
+print("\n" + greeting + ", " + name + "!")
+print("I can tell you the date and time.")
 print("Type 'history' to see previous conversations.")
 print("Type 'bye' to exit.")
 
+
+# Main chatbot loop
 while True:
 
     user_message = input("\nYou: ").strip()
 
     if user_message.lower() == "bye":
-        print("Chatbot: Goodbye,", name + "!")
+        print("Chatbot: Goodbye, " + name + "!")
         break
 
     if user_message.lower() == "history":
@@ -96,13 +194,12 @@ while True:
         continue
 
     # Generate response
-    reply = get_response(user_message, name)
+    reply = get_response(user_message)
 
-    # Store conversation
+    # Save conversation
     chat_history.append("You: " + user_message + "\n")
     chat_history.append("Chatbot: " + reply + "\n")
 
-    # Save conversation permanently
     save_message("You: " + user_message)
     save_message("Chatbot: " + reply)
 
