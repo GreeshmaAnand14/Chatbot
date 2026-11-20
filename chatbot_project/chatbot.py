@@ -45,6 +45,27 @@ responses = {
     "how are you": "I am doing great!",
     "what is python": "Python is a programming language.",
     "who are you": "I am your personal chatbot."
+
+    "what is artificial intelligence": "Artificial Intelligence allows machines to perform tasks that normally require human intelligence.",
+
+    "what is machine learning": "Machine Learning is a branch of AI where computers learn from data.",
+
+    "who created python":"Python was created by Guido van Rossum.",
+
+    "what is html":  "HTML stands for HyperText Markup Language.",
+
+    "what is cpu":  "CPU stands for Central Processing Unit. It is the brain of a computer.",
+
+    "what is internet": "The Internet is a global network that connects computers and devices.",
+
+    "what is programming":"Programming is the process of writing instructions for computers.",
+
+    "what is database": "A database is an organized collection of information.",
+
+    "what is robotics": "Robotics is a field that involves designing, building and programming robots.",
+
+    "what is iot": "IoT stands for Internet of Things. It connects physical devices to the internet."
+
 }
 
 
