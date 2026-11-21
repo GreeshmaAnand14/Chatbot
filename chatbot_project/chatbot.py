@@ -44,30 +44,63 @@ responses = {
     "hi": "Hi! Nice to meet you.",
     "how are you": "I am doing great!",
     "what is python": "Python is a programming language.",
-    "who are you": "I am your personal chatbot."
+    "who are you": "I am your personal chatbot.",
 
     "what is artificial intelligence": "Artificial Intelligence allows machines to perform tasks that normally require human intelligence.",
 
     "what is machine learning": "Machine Learning is a branch of AI where computers learn from data.",
 
-    "who created python":"Python was created by Guido van Rossum.",
+    "who created python": "Python was created by Guido van Rossum.",
 
-    "what is html":  "HTML stands for HyperText Markup Language.",
+    "what is html": "HTML stands for HyperText Markup Language.",
 
-    "what is cpu":  "CPU stands for Central Processing Unit. It is the brain of a computer.",
+    "what is cpu": "CPU stands for Central Processing Unit. It is the brain of a computer.",
 
     "what is internet": "The Internet is a global network that connects computers and devices.",
 
-    "what is programming":"Programming is the process of writing instructions for computers.",
+    "what is programming": "Programming is the process of writing instructions for computers.",
 
     "what is database": "A database is an organized collection of information.",
 
     "what is robotics": "Robotics is a field that involves designing, building and programming robots.",
 
     "what is iot": "IoT stands for Internet of Things. It connects physical devices to the internet."
-
 }
 
+# Different ways of asking the same question
+
+similar_questions = {
+
+    "how are you": [
+        "how are you",
+        "how are you doing",
+        "are you fine",
+        "how is everything",
+        "how are things going"
+    ],
+
+    "hello": [
+        "hello there",
+        "hey",
+        "hey jarvis",
+        "hello jarvis"
+    ],
+
+    "thank you": [
+        "thank you",
+        "thanks",
+        "thanks a lot",
+        "thank you so much"
+    ],
+
+    "goodbye": [
+        "goodbye",
+        "see you",
+        "see you later",
+        "take care"
+    ]
+
+}
 
 # Function for date, time and greetings
 def get_time_response(message):
@@ -77,7 +110,7 @@ def get_time_response(message):
         return "Today's date is " + now.strftime("%d %B %Y") + "."
 
     elif "day" in message:
-      "Today is " + now.strftime("%A") + "."
+        return "Today is " + now.strftime("%A") + "."
     
     elif "time" in message:
         return "The current time is " + now.strftime("%I:%M %p") + "."
@@ -142,10 +175,14 @@ def calculate(message):
 
 
 # Function to generate chatbot response
+
+    
+# Function to generate chatbot response
 def get_response(message):
 
     message = message.lower()
 
+    # Check user's name
     if "what is my name" in message:
         return "Your name is " + name + "."
 
@@ -157,16 +194,40 @@ def get_response(message):
 
     if time_response is not None:
         return time_response
+
+    # Check calculations
     math_response = calculate(message)
 
     if math_response is not None:
         return math_response
+
+    # Clean the message
+    clean_message = message.strip(" ?!.,").lower()
+
+    # Check different ways of asking questions
+    for response, questions in similar_questions.items():
+
+        if clean_message in questions:
+
+            if response == "how are you":
+                return "I'm doing great! Thank you for asking."
+
+            elif response == "hello":
+                return "Hello! How can I help you?"
+
+            elif response == "thank you":
+                return "You're welcome!"
+
+            elif response == "goodbye":
+                return "Goodbye! Have a wonderful day!"
+
     # Check normal responses
     for question in responses:
 
-        if question in message:
+        if question in clean_message:
             return responses[question]
 
+    # Default response
     return "Sorry, I don't understand that."
 
 
