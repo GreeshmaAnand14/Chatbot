@@ -1,12 +1,14 @@
 
 # STEP 7 - CHATBOT WITH DATE, TIME AND GREETINGS
-
+import datetime
+import json
+from zoneinfo import ZoneInfo
 import datetime
 from zoneinfo import ZoneInfo
 
 FILE_NAME = "chat_history.txt"
 USER_FILE = "user_data.txt"
-
+FACTS_FILE = "user_facts.json"
 
 # Load user's name
 try:
@@ -27,7 +29,13 @@ if not name:
 
     with open(USER_FILE, "w", encoding="utf-8") as file:
         file.write(name)
+# Load personal facts
+try:
+    with open(FACTS_FILE, "r", encoding="utf-8") as file:
+        user_facts = json.load(file)
 
+except (FileNotFoundError, json.JSONDecodeError):
+    user_facts = {}
 
 # Load previous conversations
 try:
@@ -176,6 +184,40 @@ def calculate(message):
 
 # Function to generate chatbot response
 
+# Function to remember personal facts
+def remember_fact(message):
+
+    fact = message[len("remember that my "):]
+
+    if " is " not in fact:
+        return "Please use this format: Remember that my favourite colour is blue."
+
+    key, value = fact.split(" is ", 1)
+
+    key = key.strip()
+    value = value.strip(" .!?")
+
+    if not key or not value:
+        return "Please provide both the fact and its value."
+
+    user_facts[key] = value
+
+    with open(FACTS_FILE, "w", encoding="utf-8") as file:
+        json.dump(user_facts, file, indent=4)
+
+    return "I will remember that your " + key + " is " + value + "."
+
+
+# Function to recall personal facts
+def recall_fact(message):
+
+    key = message[len("what is my "):].strip(" ?!.,").lower()
+
+    if key in user_facts:
+        return "Your " + key + " is " + user_facts[key] + "."
+
+    return "I don't remember that yet."
+
     
 # Function to generate chatbot response
 def get_response(message):
@@ -188,7 +230,14 @@ def get_response(message):
 
     if "who am i" in message:
         return "You are " + name + "."
+    # Remember personal facts
+    if message.startswith("remember that my "):
+        return remember_fact(message)
 
+    # Recall personal facts
+    if message.startswith("what is my ") and message != "what is my name":
+        return recall_fact(message)
+        
     # Check date, time and greetings
     time_response = get_time_response(message)
 
