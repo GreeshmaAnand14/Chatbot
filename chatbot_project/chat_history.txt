@@ -1,0 +1,82 @@
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: nice to meet you
+Chatbot: Sorry, I don't understand that.
+You: how are you
+Chatbot: I am doing great!
+You: what is your name
+Chatbot: Sorry, I don't understand that.
+You: your name
+Chatbot: Sorry, I don't understand that.
+You: okay bye
+Chatbot: Sorry, I don't understand that.
+You: Hi , how are you
+Chatbot: Hi! Nice to meet you.
+You: Nice to meet you too
+Chatbot: Sorry, I don't understand that.
+You: hello
+Chatbot: Hello! How can I help you?
+You: how are you
+Chatbot: I am doing great!
+You: what is python
+Chatbot: Python is a programming language.
+You: who are you
+Chatbot: I am your personal chatbot.
+You: what is my name
+Chatbot: Your name is Greesh.
+You: who am i
+Chatbot: You are Greesh.
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: date
+Chatbot: Today's date is 18 November 2026.
+You: time
+Chatbot: The current time is 05:52 AM.
+You: time
+Chatbot: The current time is 05:56 AM.
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: time
+Chatbot: The current time is 11:27 AM.
+You: day
+Chatbot: Sorry, I don't understand that.
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: calculate 40-30
+Chatbot: Please enter a valid calculation.
+You: 40 - 39
+Chatbot: Sorry, I don't understand that.
+You: calculate 10 + 20
+Chatbot: The answer is 30.
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: your name
+Chatbot: Sorry, I don't understand that.
+You: what is iot
+Chatbot: IoT stands for Internet of Things. It connects physical devices to the internet.
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: how are you
+Chatbot: I'm doing great! Thank you for asking.
+You: what is python
+Chatbot: Python is a programming language.
+You: what is computer network
+Chatbot: Sorry, I don't understand that.
+You: time
+Chatbot: The current time is 11:02 PM.
+You: date
+Chatbot: Today's date is 21 November 2026.
+You: day
+Chatbot: Today is Saturday.
+You: date, time , day
+Chatbot: Today's date is 21 November 2026.
+You: hi
+Chatbot: Hi! Nice to meet you.
+You: Remember that my favourite colour is blue.
+Chatbot: I will remember that your favourite colour is blue.
+You: What is my favourite colour?
+Chatbot: Your favourite colour is blue.
+You: 
+Chatbot: Sorry, I don't understand that.
+You: What is my favourite colour?
+Chatbot: Your favourite colour is blue.
