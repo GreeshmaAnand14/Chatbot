@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ARIA - Your AI Companion</title>
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <h2>ARIA</h2>
+            </div>
+
+            <p class="sidebar-heading">MENU</p>
+
+            <nav>
+                <a href="#" class="nav-item active">⌂ Dashboard</a>
+                <a href="#chat" class="nav-item">▢ New Chat</a>
+                <a href="#history" class="nav-item">◷ Chat History</a>
+                <a href="#memory" class="nav-item">✧ My Memory</a>
+                <a href="#calculator" class="nav-item">＋ Calculator</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="#settings" class="nav-item">⚙ Settings</a>
+                <p>ARIA v1.0</p>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN DASHBOARD -->
+        <main class="main-content">
+
+            <!-- TOP HEADER -->
+            <header class="top-header">
+
+                <div>
+                    <p class="header-label">PERSONAL AI ASSISTANT</p>
+                    <h2>My Dashboard</h2>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle">
+                    ☀ / ☾
+                </button>
+
+            </header>
+
+
+            <!-- WELCOME SECTION -->
+            <section class="welcome-section">
+
+                <div class="welcome-text">
+                    <p class="welcome-label">WELCOME BACK</p>
+
+                    <h1>Hello, Greeshma! 👋</h1>
+
+                    <p>
+                        I'm ARIA, your intelligent personal companion.
+                        How can I help you today?
+                    </p>
+                </div>
+
+                <!-- AI ORB -->
+                <div class="orb-container">
+                    <div class="orb">
+                        <span>✦</span>
+                    </div>
+                    <p>ARIA is ready</p>
+                </div>
+
+            </section>
+
+
+            <!-- DASHBOARD CARDS -->
+            <section class="dashboard-section">
+
+                <h2>Quick Access</h2>
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card" id="dateCard">
+                        <span class="card-icon">◷</span>
+                        <h3>Date & Time</h3>
+                        <p>Check today's date and current time.</p>
+                        <p id="currentDate">Loading date...</p>
+                        <p id="currentTime">Loading time...</p>
+
+                    </div>
+
+                    <div class="dashboard-card" id="memory">
+                        <span class="card-icon">✧</span>
+                        <h3>Personal Memory</h3>
+                        <p>View your saved personal information.</p>
+                    </div>
+
+                    <div class="dashboard-card" id="calculator">
+                        <span class="card-icon">＋</span>
+                        <h3>Calculator</h3>
+                        <p>Perform quick mathematical calculations.</p>
+                    </div>
+
+                    <div class="dashboard-card" id="history">
+                        <span class="card-icon">▤</span>
+                        <h3>Chat History</h3>
+                        <p>Explore your previous conversations.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHAT SECTION -->
+            <section class="chat-section" id="chat">
+
+                <div class="chat-heading">
+                    <div>
+                        <h2>Talk to ARIA</h2>
+                        <p>Your conversation starts here.</p>
+                    </div>
+
+                    <span class="online-status">● Online</span>
+                </div>
+
+                <div class="chat-box">
+
+                    <div class="aria-message">
+                        <span class="message-icon">✦</span>
+                        <p>
+                            Hello Greeshma! I'm ready to assist you.
+                            What would you like to talk about?
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="chat-input-area">
+
+                    <input
+                        type="text"
+                        id="userInput"
+                        placeholder="Message ARIA..."
+                    >
+
+                    <button id="sendButton">
+                        ➤
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer>
+                Made with care | ARIA Personal Assistant
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- Connect JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
