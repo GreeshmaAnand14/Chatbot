@@ -1,0 +1,430 @@
+
+/* ==============================
+   ARIA - MAIN DESIGN
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0b0c18;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* MAIN CONTAINER */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+.sidebar {
+    width: 250px;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 50px;
+}
+
+.logo h2 {
+    font-size: 28px;
+    letter-spacing: 3px;
+}
+
+.logo-icon {
+    color: #a78bfa;
+    font-size: 32px;
+}
+
+.sidebar-heading {
+    color: #8888a5;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #a9a9c0;
+    padding: 14px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: white;
+    background: linear-gradient(
+        90deg,
+        rgba(124, 58, 237, 0.4),
+        rgba(59, 130, 246, 0.15)
+    );
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-bottom p {
+    color: #77778e;
+    font-size: 12px;
+    padding: 14px;
+}
+
+/* ==============================
+   MAIN CONTENT
+============================== */
+
+.main-content {
+    flex: 1;
+    padding: 35px;
+    overflow: hidden;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header-label,
+.welcome-label {
+    color: #a78bfa;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.top-header h2 {
+    font-size: 25px;
+}
+
+.theme-toggle {
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* ==============================
+   WELCOME SECTION
+============================== */
+
+.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 35px;
+    border-radius: 22px;
+    background: linear-gradient(
+        120deg,
+        rgba(124, 58, 237, 0.22),
+        rgba(37, 99, 235, 0.12)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 40px;
+}
+
+.welcome-text h1 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.welcome-text > p:last-child {
+    color: #b9b9ce;
+    line-height: 1.7;
+}
+
+/* ==============================
+   AI ORB
+============================== */
+
+.orb-container {
+    text-align: center;
+}
+
+.orb {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+        circle at 35% 30%,
+        #c4b5fd,
+        #7c3aed 45%,
+        #2563eb 80%
+    );
+    box-shadow:
+        0 0 25px #7c3aed,
+        0 0 55px rgba(59, 130, 246, 0.5);
+        animation: orbPulse 3s ease-in-out infinite;
+        transition: transform 0.3s ease;
+}
+
+.orb span {
+    font-size: 48px;
+    color: white;
+}
+
+.orb-container p {
+    color: #c4b5fd;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* ==============================
+   DASHBOARD CARDS
+============================== */
+
+.dashboard-section {
+    margin-bottom: 40px;
+}
+
+.dashboard-section h2 {
+    margin-bottom: 20px;
+    font-size: 21px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: #8b5cf6;
+    background: rgba(124, 58, 237, 0.12);
+}
+
+.card-icon {
+    color: #a78bfa;
+    font-size: 28px;
+}
+
+.dashboard-card h3 {
+    margin: 15px 0 10px;
+}
+
+.dashboard-card p {
+    color: #a9a9c0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ==============================
+   CHAT SECTION
+============================== */
+
+.chat-section {
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.chat-heading p {
+    color: #a9a9c0;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.online-status {
+    color: #4ade80;
+    font-size: 12px;
+}
+
+.chat-box {
+    min-height: 100px;
+}
+
+.aria-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.message-icon {
+    color: #c4b5fd;
+    font-size: 23px;
+}
+
+.aria-message p {
+    color: #d1d1e2;
+    line-height: 1.6;
+}
+
+/* CHAT INPUT */
+
+.chat-input-area {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    min-width: 0;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    outline: none;
+}
+
+.chat-input-area input::placeholder {
+    color: #8888a5;
+}
+
+.chat-input-area button {
+    width: 50px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #77778e;
+    font-size: 12px;
+    margin-top: 35px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .welcome-text h1 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        width: 65px;
+        padding: 15px 5px;
+    }
+
+    .logo {
+        justify-content: center;
+    }
+
+    .logo h2,
+    .sidebar-heading,
+    .sidebar nav .nav-item,
+    .sidebar-bottom .nav-item,
+    .sidebar-bottom p {
+        font-size: 0;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .welcome-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Glowing AI Orb Animation */
+@keyframes orbPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 25px #7b2ff7,
+                    0 0 50px #2f80ed;
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 40px #7b2ff7,
+                    0 0 80px #2f80ed;
+    }
+}
+
+/* ARIA Light Mode */
+body.light-mode {
+    background: #eef1ff;
+    color: #17172b;
+}
+
+body.light-mode .sidebar,
+body.light-mode .dashboard-card,
+body.light-mode .chat-section {
+    background: rgba(255, 255, 255, 0.75);
+    color: #17172b;
+    border-color: rgba(100, 100, 150, 0.2);
+}
+
+body.light-mode .top-header {
+    color: #17172b;
+}
+
+body.light-mode .welcome-section {
+    color: white;
+}
