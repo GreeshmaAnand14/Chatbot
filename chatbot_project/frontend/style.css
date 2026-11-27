@@ -428,3 +428,80 @@ body.light-mode .top-header {
 body.light-mode .welcome-section {
     color: white;
 }
+
+/* ===== ARIA NEON GLASS CALCULATOR ===== */
+
+#num1,
+#num2,
+#operator {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 14px !important;
+    margin: 12px 0 !important;
+
+    background: #17172e !important;
+    color: #ffffff !important;
+
+    border: 1px solid #7652c9 !important;
+    border-radius: 12px !important;
+
+    font-size: 14px !important;
+    outline: none !important;
+
+    box-shadow: 0 0 12px rgba(123, 47, 247, 0.15) !important;
+    transition: 0.3s ease !important;
+}
+
+#num1::placeholder,
+#num2::placeholder {
+    color: #aaa4c7 !important;
+}
+
+#num1:focus,
+#num2:focus,
+#operator:focus {
+    border-color: #a78bfa !important;
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Dropdown */
+#operator option {
+    background: #17172e;
+    color: white;
+}
+
+/* Calculate button */
+#calculateButton {
+    width: 100% !important;
+    padding: 14px !important;
+    margin-top: 10px !important;
+
+    background: linear-gradient(135deg, #8b5cf6, #2563eb) !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: 12px !important;
+
+    font-weight: bold !important;
+    cursor: pointer !important;
+
+    transition: 0.3s ease !important;
+}
+
+#calculateButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+}
+
+/* Result */
+#calculatorResult {
+    padding: 14px !important;
+    margin-top: 15px !important;
+
+    background: rgba(139, 92, 246, 0.12) !important;
+    color: #c4b5fd !important;
+
+    border: 1px solid rgba(139, 92, 246, 0.4) !important;
+    border-radius: 12px !important;
+}
